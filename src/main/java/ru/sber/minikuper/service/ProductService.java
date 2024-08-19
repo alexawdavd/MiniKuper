@@ -74,11 +74,7 @@ public class ProductService {
     }
 
     public List<Product> getAvailableProducts() {
-        Optional<Product> optionalProduct = productRepository.findByStatus(ProductStatus.ACTIVE);
-
-        return optionalProduct.map(Stream::of)
-                .orElseThrow(() -> new RuntimeException("No available products with status: " + ProductStatus.ACTIVE.name()))
-                .collect(Collectors.toList());
+        return productRepository.findByStatus(ProductStatus.ACTIVE);
     }
 
     private void validateProduct(Product product) {
