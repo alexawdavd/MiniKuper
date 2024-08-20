@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.sber.minikuper.dto.ProductCreateDto;
+import ru.sber.minikuper.dto.ProductUpdateDto;
 import ru.sber.minikuper.entity.Product;
 import ru.sber.minikuper.service.ProductService;
 
@@ -53,7 +54,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product productDetails) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductUpdateDto productDetails) {
         try {
             Product updatedProduct = productService.updateProduct(id, productDetails);
             return new ResponseEntity<>(updatedProduct, HttpStatus.OK);

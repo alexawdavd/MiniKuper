@@ -23,7 +23,4 @@ public class ProductCreateDto {
     @NotNull
     @DecimalMin(value = "0.01", inclusive = true)
     private BigDecimal price;
-
-    @NotNull
-    private ProductStatus status;
 }

@@ -4,15 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sber.minikuper.dto.ProductCreateDto;
+import ru.sber.minikuper.dto.ProductUpdateDto;
 import ru.sber.minikuper.entity.Product;
 import ru.sber.minikuper.enums.ProductStatus;
 import ru.sber.minikuper.repository.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ProductService {
@@ -35,18 +33,14 @@ public class ProductService {
 
     @Transactional
     public Product createProduct(ProductCreateDto productCreateDto) {
-        Product product = new Product();
-        product.setTitle(productCreateDto.getTitle());
-        product.setDescription(productCreateDto.getDescription());
-        product.setPrice(productCreateDto.getPrice());
-        product.setStatus(productCreateDto.getStatus());
+        Product product = new Product(productCreateDto.getTitle(), productCreateDto.getDescription(), productCreateDto.getPrice());
         validateProduct(product);
         return productRepository.save(product);
     }
 
 
     @Transactional
-    public Product updateProduct(Long id, Product productDetails) {
+    public Product updateProduct(Long id, ProductUpdateDto productDetails) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -59,11 +53,8 @@ public class ProductService {
         if (productDetails.getPrice() != null) {
             product.setPrice(productDetails.getPrice());
         }
-        if (productDetails.getCreateTime() != null) {
-            product.setCreateTime(productDetails.getCreateTime());
-        }
         if (productDetails.getStatus() != null) {
-            product.setStatus(productDetails.getStatus());
+            product.setStatus(ProductStatus.getById(productDetails.getStatus()));
         }
 
         return productRepository.save(product);

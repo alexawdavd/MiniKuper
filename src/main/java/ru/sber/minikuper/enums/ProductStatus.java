@@ -1,10 +1,13 @@
 package ru.sber.minikuper.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum ProductStatus {
 
-    ACTIVE(1, "Активен"),
-    HIDE(2, "Скрыт"),
-    ARCHIVED(3, "Архивирован");
+    ACTIVE(0, "Активен"),
+    HIDE(1, "Скрыт"),
+    ARCHIVED(2, "Архивирован");
 
     private final int id;
     private final String title;
@@ -21,5 +24,21 @@ public enum ProductStatus {
     public String title() {
         return title;
     }
+
+    private static final Map<Integer, ProductStatus> idToParamMap;
+
+    static {
+        idToParamMap = new HashMap<>();
+        for (ProductStatus param : ProductStatus.values()) {
+            idToParamMap.put(param.id, param);
+        }
+    }
+
+    public static ProductStatus getById(int id) {
+        return idToParamMap.get(id);
+    }
+
+
+
 
 }

@@ -33,7 +33,6 @@ public class Product {
     private Date createTime;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL) // Будем хранить в бд тип INT
     private ProductStatus status;
 
 
