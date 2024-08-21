@@ -18,10 +18,10 @@ public class ProductConfig {
         return args -> {
             Product cake = new Product("Кексик", "Вкусный", new BigDecimal(123));
             Product fry = new Product("Гранд Фри большой", "большие, вкусные палочки картофеля", new BigDecimal(321), ProductStatus.HIDE);
-            Product mozaR5 = new Product("Moza r5", "Опять забыл коробку в спорт переключить", new BigDecimal(32990));
-            Product idk = new Product("Фарингосепт", "Симпоматическое лечение горла", new BigDecimal(290), ProductStatus.ARCHIVED);
+//            Product mozaR5 = new Product("Moza r5", "Опять забыл коробку в спорт переключить", new BigDecimal(32990));
+//            Product idk = new Product("Фарингосепт", "Симпоматическое лечение горла", new BigDecimal(290), ProductStatus.ARCHIVED);
 
-            productRepository.saveAll(List.of(cake, fry, mozaR5, idk));
+            productRepository.saveAll(List.of(cake, fry));
         };
     }
 

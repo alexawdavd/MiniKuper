@@ -1,5 +1,6 @@
 package ru.sber.minikuper.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import ru.sber.minikuper.enums.ProductStatus;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class ProductCreateDto {
     @NotNull
     @Size(min = 1, max = 150)
